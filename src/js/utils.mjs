@@ -21,3 +21,17 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+export function renderlistWithTemplate(templateFn, parentElement, list, position = 'afterbegin', clear = false){
+  if(clear) {
+    parentElement.innerHTML = '';
+  }
+  const htmlString = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlString.join(''));
+}
+
+export function getParams(param){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param)
+}

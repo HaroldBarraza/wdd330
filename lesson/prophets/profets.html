@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prophets</title>
+    <style>
+      #cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+    box-shadow: 0 0 15px 10px grey;
+    background-color: grey;
+}
+
+section {
+    background-color: #094d89;
+    text-align: center;
+    border-color: black;
+    border-radius: 10px;
+    border-style: solid;
+    color: aliceblue;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #094d89;
+    padding: 20px 20px 20px 20px;
+    color: aliceblue;
+    font-size: 20px;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <template id="prophet-card">
+        <section class="card">
+            <h2></h2>
+            <p></p>
+            <p></p>
+            <img class="profile" src="" alt="" loading="lazy" width="200" height="300">
+        </section>
+    </template>
+    <script>
+        const url = 'https://brotherblazzard.github.io/canvas-content/latter-day-prophets.json';
+        const template = document.querySelector('#prophet-card'); 
+
+        async function getProphetData() {
+            const response = await fetch(url);
+            const data = await response.json();
+            displayProphets(data.prophets);
+        }
+
+        getProphetData();
+
+        const displayProphets = (prophets) => {
+            prophets.forEach((prophet) => {
+                const card = template.content.cloneNode(true);
+                card.querySelector('h2').textContent = `${prophet.name} ${prophet.lastname}`;
+                card.querySelector('p:nth-of-type(1)').textContent = `Birthdate: ${prophet.birthdate}`;
+                card.querySelector('p:nth-of-type(2)').textContent = `Place of Birth: ${prophet.birthplace}`;
+                card.querySelector('.profile').src = prophet.imageurl;
+                card.querySelector('.profile').alt = `Portrait of ${prophet.name} ${prophet.lastname}`;
+
+                document.body.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
