@@ -10,7 +10,9 @@ function pokeapi(url){
         data.results.forEach(pokemon => {
             const option = document.createElement('option');
             option.textContent = pokemon.name;
-            pokemonlist.appendChild(option)            
+            pokemonlist.appendChild(option)
+            console.log("1). Total count of Pokémon records: ", data.count);
+            console.log("2). Number of Pokémon character records returned by default: ", data.results.length);
         });
     })
     .catch(error => console.error(('console error to read api'), error));
