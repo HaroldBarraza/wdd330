@@ -3,12 +3,10 @@ import { getLocalStorage } from "./utils.mjs";
 function renderCartContents() {
   const cartData = getLocalStorage("so-cart");
   
-  // Verifica si hay datos en el carrito
   if (cartData && Array.isArray(cartData)) {
     const htmlItems = cartData.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
   } else {
-    // Maneja el caso en que no hay datos en el carrito
     document.querySelector(".product-list").innerHTML = "<p>No items in cart</p>";
   }
 }
@@ -34,3 +32,11 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import ShoppingCart from "./ShoppingCart.mjs";
+
+loadHeaderFooter();
+
+const cart = new ShoppingCart("so-cart", ".product-list");
+cart.renderCartContents();
