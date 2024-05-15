@@ -20,7 +20,7 @@ export default class ProductData {
     try {
         const response = await fetch(path);
         const data = await convertToJson(response);
-        console.log(`Data for ${category}:`, data); // Verifica los datos obtenidos
+        console.log(`Data for ${category}:`, data);
         return data;
     } catch (error) {
         console.error(`Error fetching data from ${path}:`, error);
@@ -51,7 +51,7 @@ export default class ProductData {
           }
       }
 
-      console.log("Aggregated Search Results:", results); // Verifica los resultados agregados
+      console.log("Aggregated Search Results:", results);
       return results;
   }
 }
