@@ -72,7 +72,7 @@ export async function loadHeaderFooter() {
   } catch (error) {
     console.error("Error loading Header or Footer:", error);
   }
-
+}
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
