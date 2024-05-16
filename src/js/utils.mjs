@@ -49,7 +49,11 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 }
 
 async function loadTemplate(path) {
+  console.log(`Loading template from: ${path}`);
   const res = await fetch(path);
+  if (!res.ok) {
+    throw new Error(`Failed to load template from ${path}: ${res.statusText}`);
+  }
   const template = await res.text();
   return template;
 }
