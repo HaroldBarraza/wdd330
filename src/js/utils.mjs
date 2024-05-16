@@ -2,10 +2,6 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
-
-// retrieve data from localstorage
 export function getLocalStorage(key) {
   const storedData = JSON.parse(localStorage.getItem(key));
   return Array.isArray(storedData) ? storedData : [];
@@ -23,7 +19,6 @@ export function getParam(param) {
   return product;
 }
 
-// function to take a list of objects and a template and insert the objects as HTML into the DOM
 export function renderListWithTemplate(
   templateFn,
   parentElement,
@@ -32,17 +27,14 @@ export function renderListWithTemplate(
   clear = false
 ) {
   const htmlStrings = list.map(templateFn);
-  // if clear is true we need to clear out the contents of the parent.
   if (clear) {
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-// function to take an optional object and a template and insert the objects as HTML into the DOM
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
-  //if there is a callback...call it and pass data
   if (callback) {
     callback(data);
   }
@@ -93,14 +85,8 @@ export function alertMessage(message, scroll = true, duration = 3000) {
   });
   const main = document.querySelector("main");
   main.prepend(alert);
-  // make sure they see the alert by scrolling to the top of the window
-  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
   if (scroll) window.scrollTo(0, 0);
 
-  // left this here to show how you could remove the alert automatically after a certain amount of time.
-  // setTimeout(function () {
-  //   main.removeChild(alert);
-  // }, duration);
 }
 
 export function removeAllAlerts() {
@@ -126,11 +112,9 @@ document.getElementById('register-form').addEventListener('submit', function(eve
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  // Guarda los datos en localStorage
   localStorage.setItem('usuario', email);
   localStorage.setItem('contraseña', password);
 
   alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-  // Redirige a la página de inicio de sesión u otra página relevante
   window.location.href = 'login.html';
 });
