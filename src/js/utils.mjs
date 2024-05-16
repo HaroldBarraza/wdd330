@@ -52,13 +52,13 @@ async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   try {
-    const headerTemplate = await loadTemplate("./public/partials/header.html");
+    const headerTemplate = await loadTemplate("../public/partials/header.html");
     const headerElement = document.querySelector("#main-header");
-    renderWithTemplate(headerTemplate, headerElement);
+    headerElement.innerHTML = headerTemplate;
 
-    const footerTemplate = await loadTemplate("./public/partials/footer.html");
+    const footerTemplate = await loadTemplate("../public/partials/footer.html");
     const footerElement = document.querySelector("#main-footer");
-    renderWithTemplate(footerTemplate, footerElement);
+    footerElement.innerHTML = footerTemplate;
 
     console.log("Header and Footer loaded successfully.");
   } catch (error) {
@@ -106,15 +106,3 @@ export function playCartAnimation() {
   }
 }
 
-document.getElementById('register-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  localStorage.setItem('usuario', email);
-  localStorage.setItem('contraseña', password);
-
-  alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-  window.location.href = 'login.html';
-});

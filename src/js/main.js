@@ -29,3 +29,16 @@ document.addEventListener('DOMContentLoaded', function () {
     registerButton.addEventListener('click', function () {
     });
 });
+document.getElementById('register-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  localStorage.setItem('usuario', email);
+  localStorage.setItem('contraseña', password);
+
+  alert('Successful registration! Now you can log in.');
+  window.location.href = 'login.html';
+});
+
