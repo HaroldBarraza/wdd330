@@ -49,30 +49,20 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 }
 
 async function loadTemplate(path) {
-  console.log(`Loading template from: ${path}`);
   const res = await fetch(path);
-  if (!res.ok) {
-    throw new Error(`Failed to load template from ${path}: ${res.statusText}`);
-  }
   const template = await res.text();
   return template;
 }
 
 // function to dynamically load the header and footer into a page
 export async function loadHeaderFooter() {
-  try {
-    const headerTemplate = await loadTemplate("./public/partials/header.html");
-    const headerElement = document.querySelector("#main-header");
-    renderWithTemplate(headerTemplate, headerElement);
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerElement = document.querySelector("#main-header");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerElement = document.querySelector("#main-footer");
 
-    const footerTemplate = await loadTemplate("./public/partials/footer.html");
-    const footerElement = document.querySelector("#main-footer");
-    renderWithTemplate(footerTemplate, footerElement);
-
-    console.log("Header and Footer loaded successfully.");
-  } catch (error) {
-    console.error("Error loading Header or Footer:", error);
-  }
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
 }
 
 // set a listener for both touchend and click
