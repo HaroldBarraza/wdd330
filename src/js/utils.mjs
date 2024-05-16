@@ -107,3 +107,30 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+export function playCartAnimation() {
+  const cartIcon = document.querySelector('.cart svg');
+  if (cartIcon) {
+    cartIcon.classList.add('cart-animation');
+    setTimeout(() => {
+      cartIcon.classList.remove('cart-animation');
+    }, 500);
+  } else {
+    console.error('Cart icon not found!');
+  }
+}
+
+document.getElementById('register-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  // Guarda los datos en localStorage
+  localStorage.setItem('usuario', email);
+  localStorage.setItem('contraseña', password);
+
+  alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+  // Redirige a la página de inicio de sesión u otra página relevante
+  window.location.href = 'login.html';
+});
