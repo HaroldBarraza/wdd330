@@ -1,6 +1,6 @@
 const ApiKey = '6738c27b95e4688f259ccaa36ce445bb';
 
-document.getElementById('search').addEventListener('click', () =>{
+document.getElementById('search').addEventListener('click', () => {
     const city = document.getElementById('query').value;
     const unit = document.getElementById('unit').value;
     getWeatherDataByCity(city, unit);
@@ -14,11 +14,11 @@ document.getElementById('unit').addEventListener('change', () => {
     }
 });
 
-function getWeatherDataByCity(city, unit){
+function getWeatherDataByCity(city, unit) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
-        .then(data =>{
-            if (data.cod === 200){
+        .then(data => {
+            if (data.cod === 200) {
                 updateWeatherData(data, unit);
             } else {
                 alert('City not found');
@@ -27,11 +27,11 @@ function getWeatherDataByCity(city, unit){
         .catch(error => console.error('Error fetching the weather data', error));
 }
 
-function getWeatherDataByCoordinates(lat, lon, unit){
+function getWeatherDataByCoordinates(lat, lon, unit) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
-        .then(data =>{
-            if (data.cod === 200){
+        .then(data => {
+            if (data.cod === 200) {
                 updateWeatherData(data, unit);
             } else {
                 alert('Coordinates not found');
@@ -40,27 +40,24 @@ function getWeatherDataByCoordinates(lat, lon, unit){
         .catch(error => console.error('Error fetching the weather data', error));
 }
 
-window.onload = () =>{
-    if(navigator.geolocation){
+window.onload = () => {
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
             const unit = document.getElementById('unit').value;
             getWeatherDataByCoordinates(lat, lon, unit);
-        },
-        error =>{
+        }, error => {
             console.error('Error getting location', error);
             alert('Geolocation is not supported by this browser. Please enter a city manually.');
         });
     }
 }
 
-function updateWeatherData(data, unit){
+function updateWeatherData(data, unit) {
     const unitSymbol = unit === 'metric' ? 'C°' : 'F°';
     document.getElementById('city').textContent = data.name;
     document.getElementById('temp').textContent = data.main.temp;
-    document.getElementById('city-second').textContent = data.name;
-    document.getElementById('temp-second').textContent = data.main.temp;
     document.getElementById('condition').textContent = data.weather[0].description;
     const iconCode = data.weather[0].icon;
     document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}.png`;
@@ -73,7 +70,7 @@ function updateWeatherData(data, unit){
     document.getElementById('pressure').textContent = data.main.pressure;
     document.getElementById('visibility').textContent = data.visibility;
 
-    getForecastData(data.coord.lat, data.coord.lon, unit, unitSymbol);
+    getForecastData(data.coord.lat, data.coord.lon, unit);
     getAdditionalData(data.coord.lat, data.coord.lon, unit);
 }
 
@@ -108,16 +105,16 @@ function updateForecast(data, unitSymbol) {
 
     document.getElementById('temp-day').textContent = maxTempDay;
     document.getElementById('temp-night').textContent = maxTempNight;
-    document.getElementById('temp-day').nextSibling.nodeValue = unitSymbol; // Update unit symbol for day temperature
-    document.getElementById('temp-night').nextSibling.nodeValue = unitSymbol; // Update unit symbol for night temperature
+    document.getElementById('temp-day').nextSibling.nodeValue = unitSymbol;
+    document.getElementById('temp-night').nextSibling.nodeValue = unitSymbol;
 }
 
-function getAdditionalData(lat, lon, unit){
+function getAdditionalData(lat, lon, unit) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('uv-index').textContent = data.current.uvi;
             document.getElementById('moon-phase').textContent = data.daily[0].moon_phase;
         })
-        .catch(error => console.error('Error to fetching the additional data', error))
+        .catch(error => console.error('Error fetching the additional data', error));
 }
