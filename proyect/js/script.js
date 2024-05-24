@@ -58,6 +58,8 @@ function updateWeatherData(data, unit) {
     const unitSymbol = unit === 'metric' ? 'C°' : 'F°';
     document.getElementById('city').textContent = data.name;
     document.getElementById('temp').textContent = data.main.temp;
+    document.getElementById('city-second').textContent = data.name;
+    document.getElementById('temp-second').textContent = data.main.temp;
     document.getElementById('condition').textContent = data.weather[0].description;
     const iconCode = data.weather[0].icon;
     document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}.png`;
