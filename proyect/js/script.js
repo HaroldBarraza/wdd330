@@ -15,7 +15,7 @@ document.getElementById('unit').addEventListener('change', () => {
 });
 
 function getWeatherDataByCity(city, unit){
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=${unit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
         .then(data =>{
             if (data.cod === 200){
@@ -28,7 +28,7 @@ function getWeatherDataByCity(city, unit){
 }
 
 function getWeatherDataByCoordinates(lat, lon, unit){
-    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${ApiKey}&units=${unit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
         .then(data =>{
             if (data.cod === 200){
@@ -63,7 +63,7 @@ function updateWeatherData(data, unit){
     document.getElementById('temp-second').textContent = data.main.temp;
     document.getElementById('condition').textContent = data.weather[0].description;
     const iconCode = data.weather[0].icon;
-    document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${iconCode}.png`;
+    document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}.png`;
     document.getElementById('temp').textContent = data.main.temp;
     document.getElementById('temp-max').textContent = data.main.temp_max;
     document.getElementById('temp-min').textContent = data.main.temp_min;
@@ -78,7 +78,7 @@ function updateWeatherData(data, unit){
 }
 
 function getForecastData(lat, lon, unit) {
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}&units=${unit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
         .then(data => {
             updateForecast(data);
@@ -113,7 +113,7 @@ function updateForecast(data, unitSymbol) {
 }
 
 function getAdditionalData(lat, lon, unit){
-    fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${ApiKey}&units=${unit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${ApiKey}&units=${unit}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('uv-index').textContent = data.current.uvi;
