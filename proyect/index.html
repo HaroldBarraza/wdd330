@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div id="search-bar">
-                <input type="search" id="query" name="q" placeholder="Searh City">
+                <input type="search" id="query" name="q" placeholder="Search City">
                 <button id="search" type="button"></button>
             </div>
             <div id="temperature">
@@ -27,7 +27,6 @@
                     <option value="metric">C°</option>
                     <option value="imperial">F°</option>
                 </select>
-
             </div>
         </div>
     </header>
@@ -44,22 +43,26 @@
             <h2 id="second-city">Weather in <span id="city-second"></span></h2>
             <p id="second-temp">Temperature: <span id="temp-second">0</span>°</p>
             <p id="max-temp">Max Temp : <span id="temp-max"></span>°</p>
-            <p id="mim-temp">Min Temp : <span id="temp-min"></span>°</p>
+            <p id="min-temp">Min Temp : <span id="temp-min"></span>°</p>
             <p id="winds">Wind: <span id="wind"></span>m/s</p>
-            <p id="humiditys">Humidity: <span id="humidity"></span>°</p>
+            <p id="humiditys">Humidity: <span id="humidity"></span>%</p>
             <p id="point-dew">Dew Point: <span id="dew-point"></span></p>
             <p id="pressures">Pressure: <span id="pressure"></span>hPa</p>
             <p id="uv-indexs">UV Index: <span id="uv-index"></span></p>
             <p id="visibilitys">Visibility: <span id="visibility"></span>m</p>
             <p id="moon-phases">Moon Phase: <span id="moon-phase"></span></p>
         </div>
+        <div class="weather-container" id="hourly-weather"></div>
+        <div class="weather-container" id="daily-weather"></div>
         <div id="map">
             <p>Radar</p>
-            <iframe width="100%" height="80%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=mph&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=-10.195&lon=-70.832&message=true" frameborder="0"></iframe>
+            <iframe width="100%" height="70%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=mph&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=-10.195&lon=-70.832&message=true" frameborder="0"></iframe>
         </div>
     </main>
     <footer>
-
+        <div>
+            <p>©2024 | Harold Barraza Duran | WDD 330 Project |</p>
+        </div>
     </footer>
    <script src="js/script.js"></script> 
 </body>

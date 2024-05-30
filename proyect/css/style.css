@@ -18,16 +18,6 @@ p, span{
 }
 
 
-
-
-
-
-
-
-
-
-
-
 button, input {
 	font: 1em Hind, sans-serif;
 	line-height: 1.5em;
@@ -215,6 +205,7 @@ select {
 main{
 	display: grid;
 	grid-template-columns: 20px 1fr 1fr 20px;
+	column-gap: 15px;
 }
 #temp-box{
 	border-color: #140500;
@@ -255,6 +246,7 @@ main{
 	text-align: center;
 	background-color: #0E1C36;
 	color: #FFFFFF;
+	margin-top: 20px;
 }
 
 #second-temp,
@@ -316,4 +308,100 @@ main{
 }
 #temps{
 	font-size: 55px;
+}
+
+#hourly-weather{
+	grid-column: 2;
+	display: grid;
+	grid-template-rows: 100px 1fr 1fr 1fr;
+	border-radius: 20px;
+	border-color: #140500;
+	border-style: solid;
+	border-width: 5px;
+	margin-top: 40px;
+
+}
+#daily-weather{
+	grid-column: 3;
+	display: grid;
+	grid-template-rows: 100px 1fr 1fr 1fr;
+	border-radius: 20px;
+	border-color: #140500;
+	border-style: solid;
+	border-width: 5px;
+	margin-top: 40px;
+
+}
+#hourly-weather h2,
+#daily-weather h2{
+	grid-row: 1;
+	grid-column: 1/5;
+	text-align: left;
+	background-color: #0E1C36;
+    color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0;
+	font-size: 35px;
+	padding-top: 20px;
+}
+
+#daily-weather .weather-item,
+#hourly-weather .weather-item{
+	grid-column: 1/5;
+	font-size: 30px;
+	text-align: center;
+
+	
+		
+}
+
+#icon-rain{
+	width: 30px;
+	padding-left: 54px;
+	padding-top: 35px;
+	padding-right: 1px;
+}
+#hour{
+	grid-column: 1;
+}
+
+#temp-hour{
+	grid-column: 2;
+	color: #034dd6;
+}
+
+#weather-icon-hour{
+	grid-column: 3;
+}
+
+#rain{
+	grid-column: 4;
+}
+.weather-item{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+#weather-icon-hour{
+	width: 50%;
+	padding-left: 45px;
+	padding-top: 15px;
+}
+#rain{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.weather-item{
+	border: solid #6c5151;
+    border-width: 0 0 1px;
+}
+
+
+footer{
+	background-color: #A4CEDF;
+	text-align: center;
+	padding-top: 100px;
+	margin-top: 20px;
 }

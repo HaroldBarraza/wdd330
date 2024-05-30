@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronóstico del Clima</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Pronóstico del Clima</h1>
+    <div>
+        <label for="city">Ciudad:</label>
+        <input type="text" id="city" value="Buenos Aires">
+        <button onclick="getWeatherForecast()">Obtener Pronóstico</button>
+    </div>
+    <div class="weather-container" id="current-weather"></div>
+    <div class="weather-container" id="hourly-weather"></div>
+    <div class="weather-container" id="daily-weather"></div>
+    <script src="script.js"></script>
+</body>
+</html>
